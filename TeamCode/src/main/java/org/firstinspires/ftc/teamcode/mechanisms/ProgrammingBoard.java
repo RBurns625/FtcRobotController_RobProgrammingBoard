@@ -1,9 +1,11 @@
 package org.firstinspires.ftc.teamcode.mechanisms;
 
+import com.qualcomm.robotcore.hardware.AnalogInput;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.util.Range;
 
 @SuppressWarnings("unused")
 public class ProgrammingBoard {
@@ -12,6 +14,7 @@ public class ProgrammingBoard {
     private double ticksPerRotation;
     private Servo servo;
     private double servoPosition;
+    private AnalogInput pot;
 
     public void init(HardwareMap hwMap) {
         // Touch Sensor Settings
@@ -23,6 +26,8 @@ public class ProgrammingBoard {
         ticksPerRotation = motor.getMotorType().getTicksPerRev();
         // Servo Settings
         servo = hwMap.get(Servo.class, "servo");
+        // Pot Settings
+        pot = hwMap.get(AnalogInput.class, "pot");
     }
     public boolean isTouchSensorPressed() {
         return !touchSensor.getState();
@@ -44,5 +49,11 @@ public class ProgrammingBoard {
     }
     public double getServoPosition() {
         return servo.getPosition();
+    }
+    public double getPotAngle() {
+        return Range.scale(pot.getVoltage(), 0, pot.getMaxVoltage(), 0, 270);
+    }
+    public double getPotRange() {
+        return Range.scale(pot.getVoltage(), 0, pot.getMaxVoltage(), 0, 1.0);
     }
 }
