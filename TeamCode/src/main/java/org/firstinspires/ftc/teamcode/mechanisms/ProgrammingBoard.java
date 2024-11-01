@@ -12,7 +12,7 @@ public class ProgrammingBoard {
         touchSensor.setMode(DigitalChannel.Mode.INPUT);
     }
 
-    public boolean getTouchSensorState () {
-            return touchSensor.getState();
+    public boolean isTouchSensorPressed () {
+            return !touchSensor.getState();
         }
 }
