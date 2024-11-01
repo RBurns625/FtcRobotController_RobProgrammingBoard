@@ -7,7 +7,6 @@ import org.firstinspires.ftc.teamcode.mechanisms.ProgrammingBoard;
 
 @SuppressWarnings("unused")
 @TeleOp
-
 public class TouchSensorOpMode extends OpMode {
     ProgrammingBoard board = new ProgrammingBoard();
 
