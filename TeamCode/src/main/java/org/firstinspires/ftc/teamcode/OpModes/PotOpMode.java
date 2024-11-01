@@ -22,5 +22,6 @@ public class PotOpMode extends OpMode {
         telemetry.addData("Pot Angle", board.getPotAngle());
         telemetry.addData("Pot Value", board.getPotRange());
 
+        board.setServoPosition(potValue);
     }
 }
