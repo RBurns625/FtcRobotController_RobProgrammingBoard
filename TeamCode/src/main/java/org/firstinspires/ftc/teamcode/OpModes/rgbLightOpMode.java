@@ -19,7 +19,8 @@ public class rgbLightOpMode extends OpMode {
         telemetry.addLine("B: Yellow");
         telemetry.addLine("X: Green");
         telemetry.addLine("Y: Blue");
-        telemetry.addLine("Use 'Right Trigger' to go through spectrum");    }
+        telemetry.addLine("Use 'Right Trigger' to go through spectrum");
+    }
 
     @Override
     public void loop() {
@@ -44,6 +45,5 @@ public class rgbLightOpMode extends OpMode {
         board.setServoPosition(gamepad1.right_trigger);
         telemetry.addData("Servo Position", board.getServoPosition());
         telemetry.update();
-
     }
 }
