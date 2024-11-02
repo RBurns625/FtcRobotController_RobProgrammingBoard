@@ -15,6 +15,8 @@ public class ProgrammingBoard {
     private Servo servo;
     private double servoPosition;
     private AnalogInput pot;
+    private Servo rgbLight;
+    private double servoAngle;
 
     public void init(HardwareMap hwMap) {
         // Touch Sensor Settings
@@ -28,6 +30,8 @@ public class ProgrammingBoard {
         servo = hwMap.get(Servo.class, "servo");
         // Pot Settings
         pot = hwMap.get(AnalogInput.class, "pot");
+        // RGB Light
+        rgbLight = hwMap.get(Servo.class, "rgbLight");
     }
     public boolean isTouchSensorPressed() {
         return !touchSensor.getState();
@@ -46,8 +50,16 @@ public class ProgrammingBoard {
     }
     public void setServoPosition(double position) {
         servo.setPosition(position);
+        rgbLight.setPosition(position);
+    }
+    public void setServoAngle(Servo servo, double degree) {
+        servo.setPosition(degree);
+        rgbLight.setPosition(degree);
     }
     public double getServoPosition() {
+        return servo.getPosition();
+    }
+    public double getServoAngle() {
         return servo.getPosition();
     }
     public double getPotAngle() {
