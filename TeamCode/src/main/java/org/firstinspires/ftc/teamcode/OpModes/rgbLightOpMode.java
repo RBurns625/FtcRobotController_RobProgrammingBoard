@@ -31,7 +31,7 @@ public class rgbLightOpMode extends OpMode {
             board.setServoPosition(0.277);
             telemetry.addLine("Color: Red");
         }
-        else if(gamepad1.b) {
+        if(gamepad1.b) {
             board.setServoPosition(0.388);
             telemetry.addLine("Color: Yellow");
         }
