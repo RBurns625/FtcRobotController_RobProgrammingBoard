@@ -8,7 +8,7 @@ import org.firstinspires.ftc.teamcode.mechanisms.ProgrammingBoard;
 @SuppressWarnings("unused")
 @TeleOp
 
-public class rgbLightOpMode extends OpMode {
+public class RgbLightOpMode extends OpMode {
     ProgrammingBoard board = new ProgrammingBoard();
 
     @Override
