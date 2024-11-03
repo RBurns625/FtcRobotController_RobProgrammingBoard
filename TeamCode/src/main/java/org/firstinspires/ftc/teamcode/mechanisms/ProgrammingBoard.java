@@ -16,7 +16,6 @@ public class ProgrammingBoard {
     private double servoPosition;
     private AnalogInput pot;
     private Servo rgbLight;
-    private double servoAngle;
 
     public void init(HardwareMap hwMap) {
         // Touch Sensor Settings
@@ -68,4 +67,5 @@ public class ProgrammingBoard {
     public double getPotRange() {
         return Range.scale(pot.getVoltage(), 0, pot.getMaxVoltage(), 0, 1.0);
     }
+
 }
