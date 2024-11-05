@@ -4,18 +4,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.Range;
 
-@SuppressWarnings({"unused"})
-
-/*
- * Wrist joint with Axon Servo installed
- * Wrist will be zeroed parallel to the top datum of the claw assembly
- * Wrist will have safety limits of -90 to 90 degrees motion
- *
- * The following notifications will play for enhanced driver situational awareness:
- * one short beep  when wrist = 0
- * two short beeps when wrist = 90
- *
- */
+@SuppressWarnings("unused")
 
 public class Wrist {
     private Servo servo;
@@ -34,8 +23,14 @@ public class Wrist {
         servo.setPosition(Range.scale(degrees, -SERVO_DEGREES / 2, SERVO_DEGREES / 2, 0, 1));
     }
 
-    public double getCurrentAngle() {
-        return currentAngle;
+    public void wristZero()       {setServoToAngle( 0);}
+    public void wristStraight()   {setServoToAngle( 0);}
+    public void wristHorizontal() {setServoToAngle(90);}
+
+    public double getCurrentAngle() {return currentAngle;}
+
+    public void adjustAngle(double degrees) {
+        setServoToAngle(currentAngle+degrees);
     }
 
 }

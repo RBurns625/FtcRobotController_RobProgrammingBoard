@@ -13,7 +13,7 @@ import java.util.Collections;
 import java.util.List;
 
 @SuppressWarnings("unused")
-@TeleOp(name="Anthony Servo Tester")
+@TeleOp(name="Any Servo Tester")
 public class ServoTester extends OpMode {
     private static final double SERVO_DEGREES = 270;
     private static final double CONTROL_RATE = 0.1;
