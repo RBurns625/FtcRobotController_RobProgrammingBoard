@@ -6,9 +6,11 @@ import com.qualcomm.robotcore.hardware.Servo;
 @SuppressWarnings("unused")
 public class GoBildaRGBLight {
     private Servo rgbLight;
+    private Servo servo;
 
     public void init(HardwareMap hwMap) {
         rgbLight = hwMap.get(Servo.class, "rgbLight");
+        servo =  hwMap.get(Servo.class, "servo");
         setServoToAngle(0);
     }
 
@@ -22,9 +24,12 @@ public class GoBildaRGBLight {
     public void setColorAzure()  { setServoToAngle(0.555); }
     public void setColorIndigo() { setServoToAngle(0.666); }
 
-    public double getServoPosition() { return rgbLight.getPosition(); }
+    public double getServoPosition1() { return rgbLight.getPosition(); }
+    public double getServoPosition2() { return servo.getPosition(); }
+
 
     public void setServoToAngle(double degrees) {
         rgbLight.setPosition(degrees);
+        servo.setPosition(degrees);
     }
 }
