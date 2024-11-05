@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 
 @SuppressWarnings("unused")
 
-public class MeepMeepSound {
+public class NotificationSounds {
     private boolean meeper;
     int meeperSoundID;
 
