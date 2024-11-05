@@ -24,20 +24,19 @@ public class RgbLightOpMode extends OpMode {
         double potValue = board.getPotRange();
 
         if (gamepad1.a)  light.setColorRed();
-        if (gamepad1.b)  light.setColorYellow();
-        if (gamepad1.x)  light.setColorGreen();
-        if (gamepad1.y)  light.setColorBlue();
-        if (gamepad1.dpad_up)    light.setColorOrange();
-        if (gamepad1.dpad_left)  light.setColorSage();
-        if (gamepad1.dpad_right) light.setColorAzure();
-        if (gamepad1.dpad_down)  light.setColorIndigo();
-        if (gamepad1.left_stick_button)  light.setColorBlack();
+        else if (gamepad1.b)  light.setColorYellow();
+        else if (gamepad1.x)  light.setColorGreen();
+        else if (gamepad1.y)  light.setColorBlue();
+        else if (gamepad1.dpad_up)    light.setColorOrange();
+        else if (gamepad1.dpad_left)  light.setColorSage();
+        else if (gamepad1.dpad_right) light.setColorAzure();
+        else if (gamepad1.dpad_down)  light.setColorIndigo();
+        else if (gamepad1.left_stick_button)  light.setColorBlack();
         else {
             board.setServoPosition(potValue);
         }
 
         telemetry.addData("Servo 1 Position", light.getServoPosition1());
-        telemetry.addData("Servo 2 Position", light.getServoPosition2());
         telemetry.addLine("Press the following buttons");
         telemetry.addLine("A: Red");
         telemetry.addLine("B: Yellow");
