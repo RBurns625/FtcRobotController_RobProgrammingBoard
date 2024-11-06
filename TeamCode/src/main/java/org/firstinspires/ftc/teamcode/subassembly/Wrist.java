@@ -25,7 +25,8 @@ public class Wrist {
 
     public void wristZero()       {setServoToAngle( 0);}
     public void wristStraight()   {setServoToAngle( 0);}
-    public void wristHorizontal() {setServoToAngle(90);}
+    public void wristRight()      {setServoToAngle(90);}
+    public void wristLeft()       {setServoToAngle(-90);}
 
     public double getCurrentAngle() {return currentAngle;}
 
