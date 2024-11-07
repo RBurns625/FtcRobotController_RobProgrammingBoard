@@ -19,6 +19,8 @@ public class DistanceColorOpMode extends OpMode {
     @Override
     public void loop() {
         telemetry.addData("Amount Red", board.getAmountRed());
+        telemetry.addData("Amount Blue", board.getAmountBlue());
+        telemetry.addData("Amount Green", board.getAmountGreen());
         telemetry.addData("Distance (CM)", board.getDistance(DistanceUnit.CM));
         telemetry.addData("Distance (IN)", board.getDistance(DistanceUnit.INCH));
     }
