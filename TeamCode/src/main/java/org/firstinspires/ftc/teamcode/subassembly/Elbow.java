@@ -23,9 +23,10 @@ public class Elbow {
         servo.setPosition(Range.scale(degrees, -SERVO_DEGREES / 2, SERVO_DEGREES /2, 0, 1));
     }
 
-    public void elbowStraight() {setServoToAngle(-90);}
-    public void elbowDown()     {setServoToAngle(0);}
-    public void elbow45()       {setServoToAngle(-45);}
+    public void zero()     {setServoToAngle(-90);}
+    public void straight() {setServoToAngle(-90);}
+    public void down()     {setServoToAngle(0);}
+    public void angled45() {setServoToAngle(-45);}
 
     public double getCurrentAngle(){return currentAngle;}
 

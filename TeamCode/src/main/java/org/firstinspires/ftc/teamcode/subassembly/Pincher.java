@@ -10,6 +10,7 @@ public class Pincher {
     GoBildaRGBLight light;
     private Servo servo;
     private double currentAngle;
+    private boolean isOpen;
     private static final double SERVO_DEGREES    =  180;
     private static final double MIN_SAFE_DEGREES =  90;
     private static final double MAX_SAFE_DEGREES =  0.0;
@@ -25,23 +26,13 @@ public class Pincher {
         servo.setPosition(Range.scale(degrees, -SERVO_DEGREES / 2, SERVO_DEGREES / 2, 0, 1));
     }
 
-    public void pincherZero() {
-        setServoToAngle(0);
-        light.setColorYellow();
-    }
-    public void pincherOpen() {
-        setServoToAngle(-45);
-        light.setColorBlue();
-    }
-    public void pincherClose() {
-        setServoToAngle(-90);
-        light.setColorGreen();
-    }
+    public void zero()   { setServoToAngle(0);   light.setColorYellow(); }
+    public void open()   { setServoToAngle(-45); light.setColorBlue();   }
+    public void closed() { setServoToAngle(-90); light.setColorGreen();  }
 
-    public double getCurrentAngle() {
-        return currentAngle;
-    }
-    public void adjustAngle(double degrees) {
-        setServoToAngle(currentAngle+degrees);
-    }
+    public void toggle() { if (isOpen) { closed(); } else { open();} }
+
+    public double getCurrentAngle() { return currentAngle; }
+
+    public void adjustAngle(double degrees) { setServoToAngle(currentAngle+degrees); }
 }

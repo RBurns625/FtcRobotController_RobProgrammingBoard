@@ -23,15 +23,13 @@ public class Wrist {
         servo.setPosition(Range.scale(degrees, -SERVO_DEGREES / 2, SERVO_DEGREES / 2, 0, 1));
     }
 
-    public void wristZero()       {setServoToAngle( 0);}
-    public void wristStraight()   {setServoToAngle( 0);}
-    public void wristRight()      {setServoToAngle(90);}
-    public void wristLeft()       {setServoToAngle(-90);}
+    public void zero()     {setServoToAngle( 0);}
+    public void straight() {setServoToAngle( 0);}
+    public void right()    {setServoToAngle(90);}
+    public void left()     {setServoToAngle(-90);}
 
     public double getCurrentAngle() {return currentAngle;}
 
-    public void adjustAngle(double degrees) {
-        setServoToAngle(currentAngle+degrees);
-    }
+    public void adjustAngle(double degrees) { setServoToAngle(currentAngle+degrees); }
 
 }
