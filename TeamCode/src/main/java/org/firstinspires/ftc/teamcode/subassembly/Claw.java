@@ -4,26 +4,26 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 
 @SuppressWarnings("unused")
 public class Claw {
-    Elbow   elbow;
-    Pincher pincher;
-    Wrist   wrist;
+    Elbow   e;
+    Pincher p;
+    Wrist   w;
 
     public Claw(HardwareMap hwMap) {
-        elbow   = new Elbow(hwMap);
-        pincher = new Pincher(hwMap);
-        wrist   = new Wrist(hwMap);
+        e  = new Elbow(hwMap);
+        p  = new Pincher(hwMap);
+        w  = new Wrist(hwMap);
     }
 
-    public void parked()         { pincher.zero();   wrist.zero();      elbow.zero();     }
-    public void horizPickup()    { pincher.open();   wrist.straight();  elbow.down();     }
-    public void vertPickup()     { pincher.open();   wrist.straight();  elbow.down();     }
-    public void traveling()      { pincher.closed(); wrist.straight();  elbow.angled45(); }
-    public void scoreBasket()    { pincher.closed(); wrist.right();     elbow.angled45(); }
-    public void scoreSpecimen()  { pincher.closed(); wrist.left();      elbow.angled45(); }
-    public void prepareHang()    { pincher.zero();   wrist.zero();      elbow.zero();     }
+    public void parked()         { p.zero();   w.zero();      e.zero();     }
+    public void horizPickup()    { p.open();   w.straight();  e.down();     }
+    public void vertPickup()     { p.open();   w.straight();  e.down();     }
+    public void traveling()      { p.closed(); w.straight();  e.angled45(); }
+    public void scoreBasket()    { p.closed(); w.right();     e.angled45(); }
+    public void scoreSpecimen()  { p.closed(); w.left();      e.angled45(); }
+    public void prepareHang()    { p.zero();   w.zero();      e.zero();     }
 
-    public void togglePincher()  { pincher.toggle(); }
-    public void dropSample()     { pincher.open();   }
-    public void pickupSample()   { pincher.closed(); }
+    public void togglePincher()  { p.toggle(); }
+    public void dropSample()     { p.open();   }
+    public void pickupSample()   { p.closed(); }
 
 }

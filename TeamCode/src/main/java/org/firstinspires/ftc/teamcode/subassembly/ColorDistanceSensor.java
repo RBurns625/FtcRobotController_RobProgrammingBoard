@@ -11,6 +11,7 @@ public class ColorDistanceSensor {
     Elbow elbow;
     Wrist wrist;
     Pincher pincher;
+    Claw claw;
     private ColorSensor colorSensor;
     private DistanceSensor distanceSensor;
     double distanceMM;
@@ -18,10 +19,7 @@ public class ColorDistanceSensor {
     public ColorDistanceSensor(HardwareMap hwMap) {
         colorSensor = hwMap.get(ColorSensor.class, "color_distance_sensor)");
         distanceSensor = hwMap.get(DistanceSensor.class, "color_distance_sensor");
-        elbow = new Elbow(hwMap);
-        wrist = new Wrist(hwMap);
-        pincher = new Pincher(hwMap);
-        // claw = new Claw(hwMap);
+        claw = new Claw(hwMap);
     }
     public int getAmountRed() {
         return colorSensor.red();
@@ -37,10 +35,7 @@ public class ColorDistanceSensor {
     }
     public void closeOnRed() {
         if (distanceMM < 10.0 && getAmountRed() > 1000) {
-            // claw.closed();
-            elbow.elbow45();
-            wrist.wristLeft();
-            pincher.pincherClose();
+            claw.pickupSample();
         }
     }
 }

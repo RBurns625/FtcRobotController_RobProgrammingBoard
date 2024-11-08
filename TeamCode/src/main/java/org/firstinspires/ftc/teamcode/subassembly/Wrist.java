@@ -23,8 +23,8 @@ public class Wrist {
         servo.setPosition(Range.scale(degrees, -SERVO_DEGREES / 2, SERVO_DEGREES / 2, 0, 1));
     }
 
-    public void zero()     {setServoToAngle( 0);}
-    public void straight() {setServoToAngle( 0);}
+    public void zero()     {setServoToAngle(0);}
+    public void straight() {setServoToAngle(0);}
     public void right()    {setServoToAngle(90);}
     public void left()     {setServoToAngle(-90);}
 

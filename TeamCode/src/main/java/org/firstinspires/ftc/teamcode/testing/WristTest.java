@@ -11,35 +11,27 @@ import org.firstinspires.ftc.teamcode.subassembly.Wrist;
 
 /*
  * Config Setup:
- * Programming Board Port 1: "wrist"
- * Programming Board Port 5: "light"
+ * ProgBoard servo port 1: "wrist"
+ * ProgBoard servo port 5: "light"
  */
 
 public class WristTest extends OpMode {
-    private Wrist wrist;
+    private Wrist w;
 
     @Override
     public void init() {
-        wrist = new Wrist(hardwareMap);
-        wrist.wristZero();
+        w = new Wrist(hardwareMap);
+        w.zero();
     }
 
     @Override
     public void loop() {
-        if (gamepad1.a) {
-            wrist.wristRight();
-        }
-        if (gamepad1.b) {
-            wrist.wristStraight();
-        }
-        if (gamepad1.x) {
-            wrist.wristZero();
-        }
-        if (gamepad1.y) {
-            wrist.wristLeft();
-        }
+        if (gamepad1.a) { w.right();    }
+        if (gamepad1.b) { w.straight(); }
+        if (gamepad1.x) { w.zero();     }
+        if (gamepad1.y) { w.left();     }
 
-        telemetry.addData("Servo Position", wrist.getCurrentAngle());
+        telemetry.addData("Servo Position", w.getCurrentAngle());
         telemetry.addLine("Gamepad A = Wrist Horizontal (Blue Light(");
         telemetry.addLine("Gamepad B = Wrist Straight (Yellow Light");
         telemetry.addLine("Gamepad X = Wrist Zero (Green Light");
