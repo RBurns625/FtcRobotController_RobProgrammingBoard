@@ -16,7 +16,7 @@ import org.firstinspires.ftc.teamcode.subassembly.Wrist;
  */
 
 public class WristTest extends OpMode {
-    private Wrist w;
+    Wrist w;
 
     @Override
     public void init() {

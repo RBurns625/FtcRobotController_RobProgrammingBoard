@@ -10,8 +10,8 @@ import org.firstinspires.ftc.teamcode.subassembly.ColorDistanceSensor;
 @TeleOp
 
 public class PincherCloseOnRedTest extends OpMode {
-    private ColorDistanceSensor colorSensor;
-    private Claw claw;
+    ColorDistanceSensor colorSensor;
+    Claw claw;
 
     @Override
     public void init() {
