@@ -2,31 +2,22 @@ package org.firstinspires.ftc.teamcode.subassembly;
 
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
-import com.qualcomm.robotcore.util.Range;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 @SuppressWarnings("unused")
 
-public class Pincher {
-    GoBildaRGBLight light;
-    private Servo servo;
-    private double currentAngle;
-    private boolean isOpen;
-    private boolean isClosed;
-    private static final double SERVO_DEGREES    =  180;
+public class Pincher extends ServoSubassembly{
     private static final double MIN_SAFE_DEGREES =  -90;
     private static final double MAX_SAFE_DEGREES =  -30;
+    GoBildaRGBLight light;
+    private boolean isOpen;
+    private boolean isClosed;
+
 
     public Pincher(HardwareMap hwMap) {
-        servo = hwMap.get(Servo.class, "pincher");
+        super(MIN_SAFE_DEGREES, MAX_SAFE_DEGREES, hwMap.get(Servo.class, "Pincher Servo"));
         light = new GoBildaRGBLight(hwMap);
-    }
-
-    public void setServoToAngle(double degrees) {
-        degrees = Range.clip(degrees, MIN_SAFE_DEGREES, MAX_SAFE_DEGREES);
-        currentAngle = degrees;
-        servo.setPosition(Range.scale(degrees, -SERVO_DEGREES / 2, SERVO_DEGREES / 2, 0, 1));
     }
 
     public void zero()   {
@@ -58,10 +49,6 @@ public class Pincher {
             isOpen   = true;
             isClosed = false;
         }
-    }
-
-    public double getCurrentAngle() {
-        return currentAngle;
     }
 
     public void adjustAngle(double degrees) {
