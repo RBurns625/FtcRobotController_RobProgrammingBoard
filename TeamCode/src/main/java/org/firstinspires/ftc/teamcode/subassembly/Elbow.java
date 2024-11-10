@@ -17,7 +17,7 @@ public class Elbow extends ServoSubassembly{
     }
 
     public void zero() {
-        setServoToAngle(-90);
+        setServoToAngle(0);
         isStraight = false;
     }
     public void straight() {
