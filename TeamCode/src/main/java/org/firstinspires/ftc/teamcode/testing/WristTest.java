@@ -30,9 +30,8 @@ public class WristTest extends OpMode {
         if (gamepad1.b) { w.straight(); }
         if (gamepad1.x) { w.zero();     }
         if (gamepad1.y) { w.left();     }
-        if (gamepad1.right_bumper) { w.toggleAngle(); }
 
-        w.adjustAngle(-gamepad1.left_stick_x);
+        w.adjustAngle(-gamepad1.left_stick_x * 0.5);
 
         w.outputTelemetry(telemetry);
 
