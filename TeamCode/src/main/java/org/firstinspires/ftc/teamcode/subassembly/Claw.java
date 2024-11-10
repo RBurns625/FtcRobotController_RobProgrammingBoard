@@ -6,32 +6,65 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 @SuppressWarnings("unused")
 public class Claw {
-    Elbow   e;
-    Pincher p;
-    Wrist   w;
+    Elbow   elbow;
+    Pincher pincher;
+    Wrist   wrist;
 
     public Claw(HardwareMap hwMap) {
-        e  = new Elbow(hwMap);
-        p  = new Pincher(hwMap);
-        w  = new Wrist(hwMap);
+        elbow  = new Elbow(hwMap);
+        pincher  = new Pincher(hwMap);
+        wrist  = new Wrist(hwMap);
     }
 
-    public void parked()         { p.zero();   w.zero();      e.zero();     }
-    public void horizPickup()    { p.open();   w.straight();  e.down();     }
-    public void vertPickup()     { p.open();   w.straight();  e.down();     }
-    public void traveling()      { p.closed(); w.straight();  e.angled45(); }
-    public void scoreBasket()    { p.closed(); w.right();     e.angled45(); }
-    public void scoreSpecimen()  { p.closed(); w.left();      e.angled45(); }
-    public void prepareHang()    { p.zero();   w.zero();      e.zero();     }
+    public void parked() {
+        pincher.zero();
+        wrist.zero();
+        elbow.zero();
+    }
+    public void horizPickup() {
+        pincher.open();
+        wrist.straight();
+        elbow.down();
+    }
+    public void vertPickup() {
+        pincher.open();
+        wrist.straight();
+        elbow.down();
+    }
+    public void traveling() {
+        pincher.closed();
+        wrist.straight();
+        elbow.angled45();
+    }
+    public void prepareBasket() {
+        pincher.closed();
+        wrist.right();
+        elbow.angled45();
+    }
+    public void prepareSpecimen() {
+        pincher.closed();
+        wrist.left();
+        elbow.angled45();
+    }
+    public void prepareHang() {
+        pincher.zero();
+        wrist.zero();
+        elbow.zero();
+    }
+    public void clearSubmersible() {
+        pincher.open();
+        wrist.straight();
+        elbow.down();
+    }
 
-    public void togglePincher()  { p.toggle(); }
-    public void dropSample()     { p.open();   }
-    public void pickupSample()   { p.closed(); }
+    public void togglePincher() { pincher.toggle(); }
+    public void dropSample() { pincher.open();   }
+    public void pickupSample() { pincher.closed(); }
 
     public void outputTelemetry(Telemetry telemetry) {
-        e.outputTelemetry(telemetry);
-        p.outputTelemetry(telemetry);
-        w.outputTelemetry(telemetry);
+        elbow.outputTelemetry(telemetry);
+        pincher.outputTelemetry(telemetry);
+        wrist.outputTelemetry(telemetry);
     }
 
 }
