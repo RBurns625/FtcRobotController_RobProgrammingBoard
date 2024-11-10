@@ -30,7 +30,7 @@ public class PincherTest extends OpMode {
 
         pincher.adjustAngle(-gamepad1.left_trigger * 0.25);
 
-        pincher.adjustAngle(gamepad1.left_trigger * 0.25);
+        pincher.adjustAngle(gamepad1.right_trigger * 0.25);
 
         pincher.outputTelemetry(telemetry);
         telemetry.update();
