@@ -16,7 +16,7 @@ import org.firstinspires.ftc.teamcode.subassembly.Wrist;
  */
 
 public class WristTest extends OpMode {
-    Wrist w;
+    private Wrist w;
 
     @Override
     public void init() {
@@ -30,10 +30,14 @@ public class WristTest extends OpMode {
         if (gamepad1.b) { w.straight(); }
         if (gamepad1.x) { w.zero();     }
         if (gamepad1.y) { w.left();     }
+        if (gamepad1.right_bumper) { w.toggleAngle(); }
 
-        telemetry.addData("Servo Position", w.getCurrentAngle());
-        telemetry.addLine("Gamepad A = Wrist Horizontal (Blue Light(");
-        telemetry.addLine("Gamepad B = Wrist Straight (Yellow Light");
+        w.adjustAngle(-gamepad1.left_stick_x);
+
+        w.outputTelemetry(telemetry);
+
+        telemetry.addLine("Gamepad A = Wrist Horizontal (Blue Light)");
+        telemetry.addLine("Gamepad B = Wrist Straight (Yellow Light)");
         telemetry.addLine("Gamepad X = Wrist Zero (Green Light");
 
     }
