@@ -14,8 +14,8 @@ public class Pincher {
     private double currentAngle;
     private boolean isOpen;
     private static final double SERVO_DEGREES    =  180;
-    private static final double MIN_SAFE_DEGREES =  90;
-    private static final double MAX_SAFE_DEGREES =  0.0;
+    private static final double MIN_SAFE_DEGREES =  -90;
+    private static final double MAX_SAFE_DEGREES =  -30;
 
     public Pincher(HardwareMap hwMap) {
         servo = hwMap.get(Servo.class, "pincher");
@@ -29,7 +29,8 @@ public class Pincher {
     }
 
     public void zero()   {
-        setServoToAngle(0);
+        setServoToAngle(MAX_SAFE_DEGREES);
+        isOpen = true;
         light.setColorYellow();
     }
     public void open()   {
@@ -37,7 +38,8 @@ public class Pincher {
         light.setColorBlue();
     }
     public void closed() {
-        setServoToAngle(-90);
+        setServoToAngle(MIN_SAFE_DEGREES);
+        isOpen = false;
         light.setColorGreen();
     }
 
@@ -54,7 +56,7 @@ public class Pincher {
     }
 
     public void adjustAngle(double degrees) {
-        setServoToAngle(currentAngle+degrees);
+        setServoToAngle(currentAngle + degrees);
     }
 
     public void outputTelemetry(Telemetry telemetry) {
