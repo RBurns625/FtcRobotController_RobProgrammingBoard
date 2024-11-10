@@ -54,18 +54,6 @@ public class Wrist extends ServoSubassembly{
     public void adjustAngle(double degrees) {
         setServoToAngle(currentAngle+degrees);
         isStraight = (currentAngle > -1 && currentAngle < 1);
-        if(currentAngle == 90) {
-            light.setColorRed();
-        }
-        if(currentAngle == -90) {
-            light.setColorBlue();
-        }
-        if (currentAngle == 0) {
-            light.setColorGreen();
-        }
-        else {
-            light.setColorBlack();
-        }
     }
 
     public void outputTelemetry(Telemetry telemetry) {
