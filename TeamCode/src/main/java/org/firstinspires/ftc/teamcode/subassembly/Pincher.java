@@ -13,6 +13,7 @@ public class Pincher {
     private Servo servo;
     private double currentAngle;
     private boolean isOpen;
+    private boolean isClosed;
     private static final double SERVO_DEGREES    =  180;
     private static final double MIN_SAFE_DEGREES =  -90;
     private static final double MAX_SAFE_DEGREES =  -30;
@@ -30,24 +31,32 @@ public class Pincher {
 
     public void zero()   {
         setServoToAngle(MAX_SAFE_DEGREES);
-        isOpen = true;
+        isOpen   = true;
+        isClosed = false;
         light.setColorYellow();
     }
     public void open()   {
         setServoToAngle(-45);
+        isOpen   = true;
+        isClosed = false;
         light.setColorBlue();
     }
     public void closed() {
         setServoToAngle(MIN_SAFE_DEGREES);
-        isOpen = false;
+        isOpen   = false;
+        isClosed = true;
         light.setColorGreen();
     }
 
     public void toggle() {
         if (isOpen) {
             closed();
+            isOpen   = false;
+            isClosed = true;
         } else {
             open();
+            isOpen   = true;
+            isClosed = false;
         }
     }
 
@@ -62,6 +71,7 @@ public class Pincher {
     public void outputTelemetry(Telemetry telemetry) {
         telemetry.addData("Pincher Angle", currentAngle);
         telemetry.addData("Pincher Open", isOpen);
+        telemetry.addData("Pincher Closed", isClosed);
     }
 
 }
