@@ -9,7 +9,7 @@ public class GoBildaRGBLight {
     private Servo servo;
 
     public GoBildaRGBLight(HardwareMap hwMap) {
-        servo = hwMap.get(Servo.class, "light");
+        servo = hwMap.get(Servo.class, "Light");
         setServoToAngle(0);
     }
 
