@@ -2,6 +2,8 @@ package org.firstinspires.ftc.teamcode.subassembly;
 
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
+import org.firstinspires.ftc.robotcore.external.Telemetry;
+
 @SuppressWarnings("unused")
 public class Claw {
     Elbow   e;
@@ -25,5 +27,11 @@ public class Claw {
     public void togglePincher()  { p.toggle(); }
     public void dropSample()     { p.open();   }
     public void pickupSample()   { p.closed(); }
+
+    public void outputTelemetry(Telemetry telemetry) {
+        e.outputTelemetry(telemetry);
+        p.outputTelemetry(telemetry);
+        w.outputTelemetry(telemetry);
+    }
 
 }

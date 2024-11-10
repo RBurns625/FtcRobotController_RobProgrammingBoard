@@ -4,6 +4,8 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.Range;
 
+import org.firstinspires.ftc.robotcore.external.Telemetry;
+
 @SuppressWarnings("unused")
 
 public class Pincher {
@@ -26,13 +28,38 @@ public class Pincher {
         servo.setPosition(Range.scale(degrees, -SERVO_DEGREES / 2, SERVO_DEGREES / 2, 0, 1));
     }
 
-    public void zero()   { setServoToAngle(0);   light.setColorYellow(); }
-    public void open()   { setServoToAngle(-45); light.setColorBlue();   }
-    public void closed() { setServoToAngle(-90); light.setColorGreen();  }
+    public void zero()   {
+        setServoToAngle(0);
+        light.setColorYellow();
+    }
+    public void open()   {
+        setServoToAngle(-45);
+        light.setColorBlue();
+    }
+    public void closed() {
+        setServoToAngle(-90);
+        light.setColorGreen();
+    }
 
-    public void toggle() { if (isOpen) { closed(); } else { open();} }
+    public void toggle() {
+        if (isOpen) {
+            closed();
+        } else {
+            open();
+        }
+    }
 
-    public double getCurrentAngle() { return currentAngle; }
+    public double getCurrentAngle() {
+        return currentAngle;
+    }
 
-    public void adjustAngle(double degrees) { setServoToAngle(currentAngle+degrees); }
+    public void adjustAngle(double degrees) {
+        setServoToAngle(currentAngle+degrees);
+    }
+
+    public void outputTelemetry(Telemetry telemetry) {
+        telemetry.addData("Pincher Angle", currentAngle);
+        telemetry.addData("Pincher Open", isOpen);
+    }
+
 }
