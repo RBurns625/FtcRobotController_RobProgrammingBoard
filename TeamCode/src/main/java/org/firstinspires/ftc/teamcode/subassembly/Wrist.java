@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.subassembly;
 
+import com.qualcomm.robotcore.hardware.AnalogInput;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.Range;
@@ -8,6 +9,7 @@ import com.qualcomm.robotcore.util.Range;
 
 public class Wrist {
     private Servo servo;
+    private AnalogInput servoEncoder;
     private double currentAngle;
     private static final double SERVO_DEGREES    =  180;
     private static final double MIN_SAFE_DEGREES =  5.0;
