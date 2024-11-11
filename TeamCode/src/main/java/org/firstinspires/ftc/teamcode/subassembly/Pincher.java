@@ -8,9 +8,9 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 @SuppressWarnings("unused")
 
 public class Pincher extends ServoSubassembly{
+    GoBildaRGBLight light;
     private static final double MIN_SAFE_DEGREES =  -90;
     private static final double MAX_SAFE_DEGREES =  -30;
-    GoBildaRGBLight light;
     private boolean isOpen;
     private boolean isClosed;
 
