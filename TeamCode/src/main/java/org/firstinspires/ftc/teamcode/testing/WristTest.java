@@ -7,7 +7,7 @@ import org.firstinspires.ftc.teamcode.subassembly.Wrist;
 
 @SuppressWarnings("unused")
 
-@TeleOp
+@TeleOp (name="Wrist Test", group="Test)")
 
 /*
  * Config Setup:

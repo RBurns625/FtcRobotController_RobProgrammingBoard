@@ -9,7 +9,7 @@ import org.firstinspires.ftc.teamcode.subassembly.Pincher;
 import org.firstinspires.ftc.teamcode.subassembly.Wrist;
 
 @SuppressWarnings("unused")
-@TeleOp
+@TeleOp (name="Claw Test", group="Test)")
 
 public class ClawTest extends OpMode {
     Claw claw;

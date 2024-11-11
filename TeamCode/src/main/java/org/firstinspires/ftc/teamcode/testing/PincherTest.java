@@ -7,7 +7,7 @@ import org.firstinspires.ftc.teamcode.subassembly.Pincher;
 
 @SuppressWarnings("unused")
 
-@TeleOp
+@TeleOp (name="Pincher Test", group="Test)")
 public class PincherTest extends OpMode {
     private Pincher pincher;
 

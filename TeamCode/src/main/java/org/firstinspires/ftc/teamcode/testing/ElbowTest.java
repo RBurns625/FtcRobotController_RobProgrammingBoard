@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import org.firstinspires.ftc.teamcode.subassembly.Elbow;
 
 @SuppressWarnings("unused")
-@TeleOp
+@TeleOp (name="Elbow Test", group="Test)")
 public class ElbowTest extends OpMode {
     private Elbow elbow;
 

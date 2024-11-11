@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import org.firstinspires.ftc.teamcode.subassembly.NotificationSounds;
 
 @SuppressWarnings("unused")
-@TeleOp
+@TeleOp (name="Notification Sound Test", group="Test)")
 public class NotificationSoundTest extends OpMode {
     private NotificationSounds sounds;
 

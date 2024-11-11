@@ -7,7 +7,7 @@ import org.firstinspires.ftc.teamcode.subassembly.Claw;
 import org.firstinspires.ftc.teamcode.subassembly.ColorDistanceSensor;
 
 @SuppressWarnings("unused")
-@TeleOp
+@TeleOp (name="Pincher on Red Test", group="Test)")
 
 public class PincherCloseOnRedTest extends OpMode {
     ColorDistanceSensor colorSensor;
