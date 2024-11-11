@@ -8,9 +8,9 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 @SuppressWarnings("unused")
 
 public class NotificationSounds {
-    private Context appContext;
-    private int meepSoundID;
-    private int shortBeepID;
+    Context appContext;
+    int meepSoundID;
+    int shortBeepID;
 
     public NotificationSounds(HardwareMap hwMap) {
         appContext = hwMap.appContext;
@@ -21,9 +21,13 @@ public class NotificationSounds {
     }
 
     public void playMeep() {
+        SoundPlayer.getInstance().preload(appContext, meepSoundID);
         SoundPlayer.getInstance().startPlaying(appContext, meepSoundID);
+        SoundPlayer.getInstance().stopPlayingAll();
     }
     public void playBeep() {
+        SoundPlayer.getInstance().preload(appContext, shortBeepID);
         SoundPlayer.getInstance().startPlaying(appContext, shortBeepID);
+        SoundPlayer.getInstance().stopPlayingAll();
     }
 }

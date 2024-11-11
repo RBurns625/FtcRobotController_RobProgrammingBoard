@@ -20,6 +20,11 @@ public class NotificationSoundTest extends OpMode {
         if (gamepad1.a) {
             sounds.playMeep();
         }
+        if (gamepad1.b) {
+            sounds.playBeep();
+        }
+
         telemetry.addLine("A: Meep");
+        telemetry.addLine("B: Beep");
     }
 }
