@@ -18,7 +18,7 @@ public class Wrist extends ServoSubassembly{
     double wristPosition;
 
     public Wrist(HardwareMap hwMap) {
-        super(MIN_SAFE_DEGREES, MAX_SAFE_DEGREES, hwMap.get(Servo.class, "Wrist"));
+        super(MIN_SAFE_DEGREES, MAX_SAFE_DEGREES, hwMap.get(Servo.class, "wrist"));
         wristPosition = WRIST_PARKED;
         execute();
     }

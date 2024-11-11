@@ -35,7 +35,7 @@ public class ProgrammingBoard {
         ticksPerRotation = motor.getMotorType().getTicksPerRev();
         servo = hwMap.get(Servo.class, "servo");
         pot = hwMap.get(AnalogInput.class, "pot");
-        rgbLight = hwMap.get(Servo.class, "rgbLight");
+        rgbLight = hwMap.get(Servo.class, "Light");
         colorSensor = hwMap.get(ColorSensor.class, "sensor_color_distance");
         distanceSensor = hwMap.get(DistanceSensor.class, "sensor_color_distance");
         imu = hwMap.get(IMU.class, "imu");

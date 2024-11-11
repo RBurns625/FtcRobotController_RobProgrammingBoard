@@ -17,7 +17,7 @@ public class Elbow extends ServoSubassembly{
     double elbowPosition;
 
     public Elbow(HardwareMap hwMap) {
-        super(MIN_SAFE_DEGREES, MAX_SAFE_DEGREES, hwMap.get(Servo.class, "Elbow"));
+        super(MIN_SAFE_DEGREES, MAX_SAFE_DEGREES, hwMap.get(Servo.class, "elbow"));
         elbowPosition = ELBOW_PARKED;
         execute();
     }

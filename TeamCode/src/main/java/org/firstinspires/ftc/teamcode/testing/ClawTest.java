@@ -11,58 +11,45 @@ import org.firstinspires.ftc.teamcode.subassembly.Wrist;
 @SuppressWarnings("unused")
 @TeleOp (name="Claw Test", group="Test)")
 
+/*
+ * ProgBoard Servo Port 1: "pincher"
+ * ProgBoard Servo Port 2: "wrist"
+ * ProgBoard Servo Port 3: "elbow"
+ * ProgBoard Servo Port 5: "light"
+ */
+
 public class ClawTest extends OpMode {
-    Claw claw;
-    Pincher pincher;
-    Wrist wrist;
-    Elbow elbow;
+    Claw    c;
+    Pincher p;
+    Wrist   w;
+    Elbow   e;
 
     @Override
     public void init() {
-        claw    = new Claw(hardwareMap);
-        pincher = new Pincher(hardwareMap);
-        wrist   = new Wrist(hardwareMap);
-        elbow   = new Elbow(hardwareMap);
+        c = new Claw(hardwareMap);
+        p = new Pincher(hardwareMap);
+        w = new Wrist(hardwareMap);
+        e = new Elbow(hardwareMap);
     }
 
     @Override
     public void loop() {
-        if (gamepad1.a) {
-            claw.horizPickup();
-        }
-        if (gamepad1.x) {
-            claw.clearSubmersible();
-        }
-        if (gamepad1.b) {
-            claw.vertPickup();
-        }
-        if (gamepad1.y) {
-            pincher.toggle();
-        }
-        if (gamepad1.right_bumper) {
-            claw.prepareBasket();
-        }
-        if (gamepad1.left_bumper) {
-            claw.prepareSpecimen();
-        }
-        if (gamepad1.dpad_up) {
-            claw.prepareHang();
-        }
-        if (gamepad1.dpad_left) {
-            claw.parked();
-        }
-        if (gamepad1.dpad_down) {
-            claw.prepareHang();
-        }
-        if (gamepad1.dpad_right) {
-            claw.traveling();
-        }
+        if (gamepad1.a) { c.horizPickup();      }
+        if (gamepad1.x) { c.clearSubmersible(); }
+        if (gamepad1.b) { c.vertPickup();       }
+        if (gamepad1.y) { p.toggle();           }
 
-        pincher.adjustAngle(-gamepad1.left_trigger  * 1.0);
-        pincher.adjustAngle( gamepad1.right_trigger * 1.0);
+        if (gamepad1.right_bumper) { c.prepareBasket();   }
+        if (gamepad1.left_bumper)  { c.prepareSpecimen(); }
 
-        wrist.adjustAngle(-gamepad1.left_stick_x * 0.5);
+        if (gamepad1.dpad_up)    { c.prepareHang(); }
+        if (gamepad1.dpad_left)  { c.parked();      }
+        if (gamepad1.dpad_down)  { c.prepareHang(); }
+        if (gamepad1.dpad_right) { c.traveling();   }
 
-        elbow.adjustAngle(-gamepad1.right_stick_y * 0.75);
+        p.adjustAngle  (-gamepad1.left_trigger  * 0.75);
+        p.adjustAngle  ( gamepad1.right_trigger * 0.75);
+        w.adjustAngle  (-gamepad1.left_stick_x  * 0.75);
+        e.adjustAngle  (-gamepad1.right_stick_y * 0.75);
     }
 }
