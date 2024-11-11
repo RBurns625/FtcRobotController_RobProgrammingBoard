@@ -11,9 +11,10 @@ public class Claw {
     Wrist   wrist;
 
     public Claw(HardwareMap hwMap) {
-        elbow  = new Elbow(hwMap);
+        elbow    = new Elbow(hwMap);
         pincher  = new Pincher(hwMap);
-        wrist  = new Wrist(hwMap);
+        wrist    = new Wrist(hwMap);
+        execute();
     }
 
     public void parked() {
@@ -77,4 +78,9 @@ public class Claw {
         wrist.outputTelemetry(telemetry);
     }
 
+    public void execute() {
+        wrist.execute();
+        pincher.execute();
+        elbow.execute();
+    }
 }

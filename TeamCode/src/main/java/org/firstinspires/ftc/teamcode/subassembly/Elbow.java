@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode.subassembly;
 
+import androidx.core.math.MathUtils;
+
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
@@ -11,9 +13,13 @@ public class Elbow extends ServoSubassembly{
     private boolean isStraight;
     private static final double MIN_SAFE_DEGREES = -90;
     private static final double MAX_SAFE_DEGREES = 0;
+    private static final double ELBOW_PARKED     = 0;
+    double elbowPosition;
 
     public Elbow(HardwareMap hwMap) {
         super(MIN_SAFE_DEGREES, MAX_SAFE_DEGREES, hwMap.get(Servo.class, "Elbow"));
+        elbowPosition = ELBOW_PARKED;
+        execute();
     }
 
     public void zero() {
@@ -42,4 +48,8 @@ public class Elbow extends ServoSubassembly{
         telemetry.addData("Elbow Straight", isStraight);
     }
 
+    public void execute() {
+        elbowPosition = MathUtils.clamp(elbowPosition, MIN_SAFE_DEGREES, MAX_SAFE_DEGREES);
+        setServoToAngle(ELBOW_PARKED);
+    }
 }
