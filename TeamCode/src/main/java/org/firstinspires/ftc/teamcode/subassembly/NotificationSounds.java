@@ -16,10 +16,14 @@ public class NotificationSounds {
         appContext = hwMap.appContext;
         meepSoundID = hwMap.appContext.getResources().getIdentifier("meep11", "raw",
                 hwMap.appContext.getPackageName());
-        shortBeepID = hwMap.appContext.getResources().getIdentifier("shortBeep", "raw",
+        shortBeepID = hwMap.appContext.getResources().getIdentifier("shortbeep", "raw",
                 hwMap.appContext.getPackageName());
     }
 
-    public void playMeep() { SoundPlayer.getInstance().startPlaying(appContext, meepSoundID); }
-    public void playBeep() { SoundPlayer.getInstance().startPlaying(appContext, shortBeepID);}
+    public void playMeep() {
+        SoundPlayer.getInstance().startPlaying(appContext, meepSoundID);
+    }
+    public void playBeep() {
+        SoundPlayer.getInstance().startPlaying(appContext, shortBeepID);
+    }
 }
