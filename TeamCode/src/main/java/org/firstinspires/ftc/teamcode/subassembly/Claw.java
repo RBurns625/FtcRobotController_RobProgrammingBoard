@@ -57,6 +57,16 @@ public class Claw {
         elbow.down();
     }
 
+    public void adjustPincher(double degrees) {
+        pincher.adjustAngle(degrees);
+    }
+    public void adjustWrist(double degrees) {
+        wrist.adjustAngle(degrees);
+    }
+    public void adjustElbow(double degrees) {
+        elbow.adjustAngle(degrees);
+    }
+
     public void togglePincher() { pincher.toggle(); }
     public void dropSample() { pincher.open();   }
     public void pickupSample() { pincher.closed(); }
