@@ -1,26 +1,25 @@
 package org.firstinspires.ftc.teamcode.subassembly;
 
+import android.content.Context;
+
 import com.qualcomm.ftccommon.SoundPlayer;
 import com.qualcomm.robotcore.hardware.HardwareMap;
-
-import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 @SuppressWarnings("unused")
 
 public class NotificationSounds {
-     private boolean meepSound;
-     int meepSoundID;
-     Telemetry telemetry;
+    private Context appContext;
+    private int meepSoundID;
+    private int shortBeepID;
 
-     public void init(HardwareMap hwMap) {
-         meepSoundID = hwMap.appContext.getResources().getIdentifier("meep11", "raw",
-             hwMap.appContext.getPackageName());
-         if (meepSoundID !=0)
-             meepSound = SoundPlayer.getInstance().preload(hwMap.appContext, meepSoundID);
-         if (meepSound) {
-             SoundPlayer.getInstance().startPlaying(hwMap.appContext, meepSoundID);
-         } else {
-             telemetry.addLine("File Not Found");
-         }
+    public NotificationSounds(HardwareMap hwMap) {
+        appContext = hwMap.appContext;
+        meepSoundID = hwMap.appContext.getResources().getIdentifier("meep11", "raw",
+                hwMap.appContext.getPackageName());
+        shortBeepID = hwMap.appContext.getResources().getIdentifier("shortBeep", "raw",
+                hwMap.appContext.getPackageName());
     }
+
+    void playMeep() { SoundPlayer.getInstance().startPlaying(appContext, meepSoundID); }
+    void playBeep() { SoundPlayer.getInstance().startPlaying(appContext, shortBeepID);}
 }

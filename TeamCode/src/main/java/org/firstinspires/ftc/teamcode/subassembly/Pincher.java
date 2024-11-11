@@ -11,6 +11,7 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 public class Pincher extends ServoSubassembly{
     GoBildaRGBLight light;
+    NotificationSounds sound;
     private static final double MIN_SAFE_DEGREES =  -90;
     private static final double MAX_SAFE_DEGREES =  -30;
     private static final double PINCHER_PARKED   =  -30;
@@ -23,6 +24,7 @@ public class Pincher extends ServoSubassembly{
         super(MIN_SAFE_DEGREES, MAX_SAFE_DEGREES, hwMap.get(Servo.class, "Pincher Servo"));
         pincherPosition = PINCHER_PARKED;
         light = new GoBildaRGBLight(hwMap);
+        sound = new NotificationSounds(hwMap);
         execute();
     }
 
@@ -31,6 +33,7 @@ public class Pincher extends ServoSubassembly{
         isOpen   = true;
         isClosed = false;
         light.setColorYellow();
+        sound.playBeep();
     }
     public void open()   {
         setServoToAngle(-45);
@@ -43,6 +46,7 @@ public class Pincher extends ServoSubassembly{
         isOpen   = false;
         isClosed = true;
         light.setColorGreen();
+        sound.playMeep();
     }
 
     public void toggle() {
