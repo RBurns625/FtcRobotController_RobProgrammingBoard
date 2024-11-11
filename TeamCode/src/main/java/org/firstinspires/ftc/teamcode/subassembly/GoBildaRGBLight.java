@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 @SuppressWarnings("unused")
 
 public class GoBildaRGBLight {
-    private Servo servo;
+    Servo servo;
 
     public GoBildaRGBLight(HardwareMap hwMap) {
         servo = hwMap.get(Servo.class, "Light");
