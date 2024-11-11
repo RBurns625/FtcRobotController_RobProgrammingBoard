@@ -20,6 +20,6 @@ public class NotificationSounds {
                 hwMap.appContext.getPackageName());
     }
 
-    void playMeep() { SoundPlayer.getInstance().startPlaying(appContext, meepSoundID); }
-    void playBeep() { SoundPlayer.getInstance().startPlaying(appContext, shortBeepID);}
+    public void playMeep() { SoundPlayer.getInstance().startPlaying(appContext, meepSoundID); }
+    public void playBeep() { SoundPlayer.getInstance().startPlaying(appContext, shortBeepID);}
 }
