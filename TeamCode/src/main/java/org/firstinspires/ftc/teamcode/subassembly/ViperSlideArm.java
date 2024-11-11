@@ -53,6 +53,13 @@ public class ViperSlideArm {
         slideMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
     }
 
+    public void parked() {
+        armPosition   = ARM_RETRACTED;
+        slidePosition = SLIDE_RETRACTED;
+    }
+    public void traveling() {
+        slidePosition = SLIDE_RETRACTED;
+    }
     public void sampleCollect() {
         armPosition   = ARM_COLLECT;
         slidePosition = SLIDE_RETRACTED;
