@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode.subassembly;
 
+import androidx.core.math.MathUtils;
+
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
@@ -8,14 +10,17 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 @SuppressWarnings("unused")
 
 public class Wrist extends ServoSubassembly{
-    GoBildaRGBLight light;
     private static final double MIN_SAFE_DEGREES =  -90;
     private static final double MAX_SAFE_DEGREES =   90;
+    private static final double WRIST_PARKED     =    0;
     private boolean isStraight;
+
+    double wristPosition;
 
     public Wrist(HardwareMap hwMap) {
         super(MIN_SAFE_DEGREES, MAX_SAFE_DEGREES, hwMap.get(Servo.class, "Wrist"));
-        light = new GoBildaRGBLight(hwMap);
+        wristPosition = WRIST_PARKED;
+        execute();
     }
 
     public void isStraight() {
@@ -25,22 +30,18 @@ public class Wrist extends ServoSubassembly{
     public void zero() {
         setServoToAngle(0);
         isStraight = true;
-        light.setColorGreen();
     }
     public void straight() {
         setServoToAngle(0);
         isStraight = true;
-        light.setColorGreen();
     }
     public void right() {
         setServoToAngle(-90);
         isStraight = false;
-        light.setColorBlue();
     }
     public void left() {
         setServoToAngle(90);
         isStraight = false;
-        light.setColorRed();
     }
     public void toggleAngle() {
         if (isStraight) {
@@ -59,6 +60,11 @@ public class Wrist extends ServoSubassembly{
     public void outputTelemetry(Telemetry telemetry) {
         telemetry.addData("Wrist Angle", currentAngle);
         telemetry.addData("Wrist Straight", isStraight);
+    }
+
+    public void execute() {
+        wristPosition = MathUtils.clamp(wristPosition, MIN_SAFE_DEGREES, MAX_SAFE_DEGREES);
+        setServoToAngle(WRIST_PARKED);
     }
 
 }

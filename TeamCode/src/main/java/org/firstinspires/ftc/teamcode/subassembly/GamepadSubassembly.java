@@ -7,6 +7,7 @@ import com.qualcomm.robotcore.hardware.Gamepad;
 public class GamepadSubassembly {
     final double FUDGE_FACTOR_DEG = 15;
     private Gamepad gamepad1;
+    private Gamepad gamepad2;
     private Claw claw;
     private Pincher pincher;
     private ViperSlideArm viperSlideArm;
@@ -14,6 +15,7 @@ public class GamepadSubassembly {
     public void init (Gamepad gamepad1, Gamepad gamepad2, Claw claw, Pincher pincher,
                       ViperSlideArm viperSlideArm) {
         this.gamepad1 = gamepad1;
+        this.gamepad2 = gamepad2;
         this.claw = claw;
         this.pincher = pincher;
         this.viperSlideArm = viperSlideArm;
@@ -22,7 +24,7 @@ public class GamepadSubassembly {
     public void execute() {
         viperSlideArm.moveArm(-gamepad1.right_stick_y * 1.0);
         viperSlideArm.setArmPositionFudgeFactor(FUDGE_FACTOR_DEG
-                * (gamepad1.right_trigger + (-gamepad1.left_trigger)));
+                * (gamepad2.right_trigger + (-gamepad2.left_trigger)));
         claw.adjustPincher(-gamepad1.right_stick_x * 1.0);
         claw.adjustElbow(-gamepad1.left_stick_y * 1.0);
         claw.adjustWrist(-gamepad1.left_stick_x * 1.0);
