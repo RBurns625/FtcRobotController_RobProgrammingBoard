@@ -37,7 +37,6 @@ public class ClawTest extends OpMode {
         if (gamepad1.a) { c.horizPickup();      }
         if (gamepad1.x) { c.clearSubmersible(); }
         if (gamepad1.b) { c.vertPickup();       }
-        if (gamepad1.y) { p.toggle();           }
 
         if (gamepad1.right_bumper) { c.prepareBasket();   }
         if (gamepad1.left_bumper)  { c.prepareSpecimen(); }

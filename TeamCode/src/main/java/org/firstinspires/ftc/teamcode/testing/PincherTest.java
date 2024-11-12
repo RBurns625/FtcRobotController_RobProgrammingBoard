@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.subassembly.GoBildaRGBLight;
+import org.firstinspires.ftc.teamcode.subassembly.NotificationSounds;
 import org.firstinspires.ftc.teamcode.subassembly.Pincher;
 
 @SuppressWarnings("unused")
@@ -12,6 +13,7 @@ import org.firstinspires.ftc.teamcode.subassembly.Pincher;
 public class PincherTest extends OpMode {
     private Pincher pincher;
     private GoBildaRGBLight light;
+    private NotificationSounds sounds;
     boolean yAlreadyPressed;
     boolean pincherOpen;
 
@@ -19,6 +21,7 @@ public class PincherTest extends OpMode {
     public void init() {
         pincher = new Pincher(hardwareMap);
         light = new GoBildaRGBLight(hardwareMap);
+        sounds = new NotificationSounds(hardwareMap);
     }
 
     @Override
@@ -28,17 +31,21 @@ public class PincherTest extends OpMode {
         }
         if(gamepad1.a) {
             pincher.open();
+            sounds.playBeep();
         }
         if (gamepad1.b) {
             pincher.closed();
+            sounds.playMeep();
         }
         if (gamepad1.y && !yAlreadyPressed) {
             pincherOpen = !pincherOpen;
             telemetry.addData("Pincher", pincherOpen);
             if (pincherOpen) {
                 pincher.open();
+                sounds.playBeep();
             } else {
                 pincher.closed();
+                sounds.playMeep();
             }
         }
         yAlreadyPressed = gamepad1.y;

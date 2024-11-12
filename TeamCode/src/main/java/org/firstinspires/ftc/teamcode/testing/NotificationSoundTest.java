@@ -9,6 +9,10 @@ import org.firstinspires.ftc.teamcode.subassembly.NotificationSounds;
 @TeleOp (name="Notification Sound Test", group="Test)")
 public class NotificationSoundTest extends OpMode {
     private NotificationSounds sounds;
+    boolean aAlreadyPressed;
+    boolean bAlreadyPressed;
+    boolean aNotification;
+    boolean bNotification;
 
     @Override
     public void init() {
@@ -17,14 +21,30 @@ public class NotificationSoundTest extends OpMode {
 
     @Override
     public void loop() {
-        if (gamepad1.a) {
-            sounds.playMeep();
+        if (gamepad1.a && !aAlreadyPressed) {
+            aNotification = !aNotification;
+            if (aNotification) {
+                sounds.playMeep();
+            } else {
+                sounds.stopSound();
+            }
         }
-        if (gamepad1.b) {
-            sounds.playBeep();
+
+        if (gamepad1.b && !bAlreadyPressed) {
+            bNotification = !bNotification;
+            if (bNotification) {
+                sounds.playBeep();
+            } else {
+                sounds.stopSound();
+            }
         }
+
+        aAlreadyPressed = gamepad1.a;
+        bAlreadyPressed = gamepad1.b;
 
         telemetry.addLine("A: Meep");
         telemetry.addLine("B: Beep");
+
     }
 }
+

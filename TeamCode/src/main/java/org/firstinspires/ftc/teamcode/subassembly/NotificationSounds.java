@@ -23,11 +23,12 @@ public class NotificationSounds {
     public void playMeep() {
         SoundPlayer.getInstance().preload(appContext, meepSoundID);
         SoundPlayer.getInstance().startPlaying(appContext, meepSoundID);
-        SoundPlayer.getInstance().stopPlayingAll();
     }
     public void playBeep() {
         SoundPlayer.getInstance().preload(appContext, shortBeepID);
         SoundPlayer.getInstance().startPlaying(appContext, shortBeepID);
-        SoundPlayer.getInstance().stopPlayingAll();
+    }
+        public void stopSound() {
+        SoundPlayer.getInstance().stopPlayingLoops();
     }
 }

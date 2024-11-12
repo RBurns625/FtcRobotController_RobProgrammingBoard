@@ -33,9 +33,4 @@ public class ColorDistanceSensor {
     public double getDistanceMM(DistanceUnit du) {
         return distanceSensor.getDistance(du);
     }
-    public void closeOnRed() {
-        if (distanceMM < 10.0 && getAmountRed() > 1000) {
-            claw.pickupSample();
-        }
-    }
 }

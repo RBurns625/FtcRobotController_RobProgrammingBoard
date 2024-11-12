@@ -20,12 +20,11 @@ import org.firstinspires.ftc.teamcode.subassembly.ViperSlideArm;
  *
  * CONTROL HUB:
  * Motor:          Port 0 "FwdLt"    | Port 1 "FwdRt"   | Port 2 "AftLt"   | Port 3 "AftRt"
- * Motor Encoder:  Port 0            | Port 1           | Port 2           | Port 3
  * Servo:          Port 0 "rgbLight" |
  *
  * EXPANSION HUB
- * Motor:          Port 0 "armMotor" | Port 1 "slideMotor"  |
- * Motor Encoder:  Port 0            | Port 1               |
+ * Motor:          Port 0 "armMotor" | Port 1 "slideMotor"
+ * Motor Encoder:  Port 0            | Port 1
  * Servo:          Port 0 "pincher"  | Port 1 "wrist"       | Port 2 "elbow"
  */
 
@@ -74,7 +73,6 @@ public class RobTeleOp extends OpMode {
 
         gamepadControl.execute();
         viperSlideArm.execute();
-        claw.execute();
 
         viperSlideArm.outputTelemetry(telemetry);
         claw.outputTelemetry(telemetry);

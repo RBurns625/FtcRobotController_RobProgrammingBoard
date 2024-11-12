@@ -28,7 +28,7 @@ public class ViperSlideArm {
     final double ARM_RUNG_LOW      = 45  * ARM_TICKS_PER_DEGREE;
     final double ARM_RUNG_HIGH     = 60  * ARM_TICKS_PER_DEGREE;
     final double ARM_HANG_PREP     = 110 * ARM_TICKS_PER_DEGREE;
-    final double ARM_WINCH_ROBOT   = 10 * ARM_TICKS_PER_DEGREE;
+    final double ARM_WINCH_ROBOT   = 10  * ARM_TICKS_PER_DEGREE;
 
     final double SLIDE_RETRACTED     = 0   * SLIDE_TICKS_PER_MM;
     final double SLIDE_BASKET_HIGH   = 390 * SLIDE_TICKS_PER_MM;
@@ -37,12 +37,12 @@ public class ViperSlideArm {
     final double SLIDE_RUNG_HIGH     = 50  * SLIDE_TICKS_PER_MM;
     final double SLIDE_RUNG_LOW      = 25  * SLIDE_TICKS_PER_MM;
 
-    private double armPosition = ARM_RETRACTED;
+    private double armPosition   = ARM_RETRACTED;
     private double slidePosition = SLIDE_RETRACTED;
     private double armPositionFudgeFactor;
 
     public void init (HardwareMap hwMap) {
-        armMotor = hwMap.get(DcMotor.class, "armMotor");
+        armMotor   = hwMap.get(DcMotor.class, "armMotor");
         slideMotor = hwMap.get(DcMotor.class, "slideMotor");
 
         armMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);

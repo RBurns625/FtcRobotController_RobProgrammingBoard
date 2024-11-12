@@ -11,6 +11,8 @@ public class GamepadSubassembly {
     private Claw claw;
     private Pincher pincher;
     private ViperSlideArm viperSlideArm;
+    boolean yAlreadyPressed;
+    boolean pincherOpen;
 
     public void init (Gamepad gamepad1, Gamepad gamepad2, Claw claw, Pincher pincher,
                       ViperSlideArm viperSlideArm) {
@@ -32,36 +34,39 @@ public class GamepadSubassembly {
         if (gamepad1.a) {
             claw.horizPickup();
             viperSlideArm.sampleCollect();
-        } else if (gamepad1.b) {
+        } if (gamepad1.b) {
             claw.vertPickup();
             viperSlideArm.sampleCollect();
-        } else if (gamepad1.x) {
+        } if (gamepad1.x) {
             claw.clearSubmersible();
             viperSlideArm.clearBarrier();
-        } else if (gamepad1.y) {
-            pincher.toggle();
-        } else if (gamepad1.right_bumper) {
+        } if (gamepad1.right_bumper) {
             claw.prepareBasket();
             viperSlideArm.highBasket();
-        } else if (gamepad1.left_bumper) {
+        } if (gamepad1.left_bumper) {
             claw.prepareSpecimen();
             viperSlideArm.highRung();
-        } else if (gamepad1.dpad_up) {
+        } if (gamepad1.dpad_up) {
             claw.prepareHang();
             viperSlideArm.hangPrepare();
-        } else if (gamepad1.dpad_left) {
+        } if (gamepad1.dpad_left) {
             claw.parked();
             viperSlideArm.parked();
-        } else if (gamepad1.dpad_down) {
+        } if (gamepad1.dpad_down) {
             claw.prepareHang();
             viperSlideArm.hangRobot();
-        } else if (gamepad1.dpad_right) {
+        } if (gamepad1.dpad_right) {
             claw.traveling();
             viperSlideArm.traveling();
-        } else if (gamepad1.left_stick_button) {
-            claw.dropSample();
-        } else if (gamepad1.right_stick_button) {
-            claw.pickupSample();
         }
+        if (gamepad1.y && !yAlreadyPressed) {
+            pincherOpen = !pincherOpen;
+            if (pincherOpen) {
+            pincher.open();
+            } else {
+                pincher.closed();
+            }
+        }
+        yAlreadyPressed = gamepad1.y;
     }
 }

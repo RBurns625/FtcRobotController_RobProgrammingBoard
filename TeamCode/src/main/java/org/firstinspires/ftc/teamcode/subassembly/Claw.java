@@ -14,7 +14,6 @@ public class Claw {
         elbow    = new Elbow(hwMap);
         pincher  = new Pincher(hwMap);
         wrist    = new Wrist(hwMap);
-        execute();
     }
 
     public void parked() {
@@ -68,19 +67,9 @@ public class Claw {
         elbow.adjustAngle(degrees);
     }
 
-    public void togglePincher() { pincher.toggle(); }
-    public void dropSample() { pincher.open();   }
-    public void pickupSample() { pincher.closed(); }
-
     public void outputTelemetry(Telemetry telemetry) {
         elbow.outputTelemetry(telemetry);
         pincher.outputTelemetry(telemetry);
         wrist.outputTelemetry(telemetry);
-    }
-
-    public void execute() {
-        wrist.execute();
-        pincher.execute();
-        elbow.execute();
     }
 }

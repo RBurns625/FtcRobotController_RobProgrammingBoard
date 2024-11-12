@@ -1,7 +1,5 @@
 package org.firstinspires.ftc.teamcode.subassembly;
 
-import androidx.core.math.MathUtils;
-
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
@@ -17,13 +15,9 @@ public class Pincher extends ServoSubassembly{
     private boolean isOpen;
     private boolean isClosed;
 
-    double pincherPosition;
-
     public Pincher(HardwareMap hwMap) {
         super(MIN_SAFE_DEGREES, MAX_SAFE_DEGREES, hwMap.get(Servo.class, "pincher"));
-        pincherPosition = PINCHER_PARKED;
         light = new GoBildaRGBLight(hwMap);
-        execute();
     }
 
     public void zero()   {
@@ -44,19 +38,7 @@ public class Pincher extends ServoSubassembly{
         light.setColorPClosed();
     }
 
-    public void toggle() {
-        if (isOpen) {
-            closed();
-            isOpen   = false;
-            isClosed = true;
-        } else {
-            open();
-            isOpen   = true;
-            isClosed = false;
-        }
-    }
-
-    public void adjustAngle(double degrees) {
+     public void adjustAngle(double degrees) {
         setServoToAngle(currentAngle + degrees);
     }
 
@@ -65,10 +47,4 @@ public class Pincher extends ServoSubassembly{
         telemetry.addData("Pincher Open", isOpen);
         telemetry.addData("Pincher Closed", isClosed);
     }
-
-    public void execute() {
-        pincherPosition = MathUtils.clamp(pincherPosition, MIN_SAFE_DEGREES, MAX_SAFE_DEGREES);
-        setServoToAngle(PINCHER_PARKED);
-    }
-
 }
