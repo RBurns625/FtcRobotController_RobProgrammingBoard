@@ -101,7 +101,6 @@ public class ViperSlideArm {
         if (slidePosition > SLIDE_MAX_EXTENSION) {
             slidePosition = SLIDE_MAX_EXTENSION;
         }
-
         if (slidePosition < 0) {
             slidePosition = 0;
         }
