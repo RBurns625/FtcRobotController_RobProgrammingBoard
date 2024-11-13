@@ -38,6 +38,14 @@ public class Pincher extends ServoSubassembly{
         light.setColorPClosed();
     }
 
+    public void toggle() {
+        if (!isOpen) {
+            open();
+        } else {
+            closed();
+        }
+    }
+
      public void adjustAngle(double degrees) {
         setServoToAngle(currentAngle + degrees);
     }

@@ -57,6 +57,10 @@ public class Claw {
         elbow.down();
     }
 
+    public void togglePincher() {
+        pincher.toggle();
+    }
+
     public void adjustPincher(double degrees) {
         pincher.adjustAngle(degrees);
     }

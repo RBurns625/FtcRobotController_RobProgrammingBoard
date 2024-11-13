@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.OpModes;
 import com.arcrobotics.ftclib.drivebase.MecanumDrive;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 
+import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.arcrobotics.ftclib.hardware.motors.Motor;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
@@ -34,6 +35,7 @@ public class RobTeleOp extends OpMode {
     GamepadSubassembly gamepadControl;
     Pincher pincher;
     GamepadEx driveOp;
+    GamepadEx subDriverOp;
     MecanumDrive drive;
     double JOYSTICK_EXPO_RATE = 1.5;
     double DRIVE_MULTIPLIER = 0.5;
@@ -49,15 +51,20 @@ public class RobTeleOp extends OpMode {
                 new Motor(hardwareMap, "AftLt", Motor.GoBILDA.RPM_312),
                 new Motor(hardwareMap, "AftRt", Motor.GoBILDA.RPM_312)
         );
-        driveOp = new GamepadEx(gamepad1);
-        claw = new Claw(hardwareMap);
-        pincher = new Pincher(hardwareMap);
+        driveOp        = new GamepadEx(gamepad1);
+        subDriverOp    = new GamepadEx(gamepad2);
+        claw           = new Claw(hardwareMap);
+        pincher        = new Pincher(hardwareMap);
         gamepadControl = new GamepadSubassembly(hardwareMap);
-        viperSlideArm = new ViperSlideArm();
+        viperSlideArm  = new ViperSlideArm();
+
+        subDriverOp.readButtons();
+
         viperSlideArm.init(hardwareMap);
 
         telemetry.addLine("Robot is ready to rock!");
         telemetry.update();
+
     }
 
     @Override
@@ -73,41 +80,25 @@ public class RobTeleOp extends OpMode {
 
         if (gamepad2.a) {
             gamepadControl.buttonA();
-        }
-        if (gamepad2.b) {
+        } else if (gamepad2.b) {
             gamepadControl.buttonB();
-        }
-        if (gamepad2.x) {
+        } else if (gamepad2.x) {
             gamepadControl.buttonX();
-        }
-        if (gamepad2.y && !yAlreadyPressed) {
-            pincherOpen = !pincherOpen;
-            if (pincherOpen) {
-                pincher.open();
-            } else {
-                pincher.closed();
-            }
-        }
-        if (gamepad2.right_bumper) {
+        } else if (gamepad2.right_bumper) {
             gamepadControl.rtbumper();
-        }
-        if (gamepad2.left_bumper) {
+        } else if (gamepad2.left_bumper) {
             gamepadControl.ltbumper();
-        }
-        if (gamepad2.dpad_up) {
+        } else if (gamepad2.dpad_up) {
             gamepadControl.dpadUp();
-        }
-        if (gamepad2.dpad_left) {
+        } else if (gamepad2.dpad_left) {
             gamepadControl.dpadLeft();
-        }
-        if (gamepad2.dpad_down) {
+        } else if (gamepad2.dpad_down) {
             gamepadControl.dpadDown();
-        }
-        if (gamepad2.dpad_right) {
+        } else if (gamepad2.dpad_right) {
             gamepadControl.dpadRight();
+        } else if (subDriverOp.wasJustPressed(GamepadKeys.Button.Y)) {
+            claw.togglePincher();
         }
-
-        yAlreadyPressed = gamepad2.y;
 
         viperSlideArm.moveSlide(gamepad2.right_trigger + (-gamepad2.left_trigger));
 

@@ -50,7 +50,7 @@ public class PincherTest extends OpMode {
         }
         yAlreadyPressed = gamepad1.y;
 
-        if (pincher.getCurrentAngle() >= -45 ) {
+        if (pincher.getCurrentAngle() >= -45) {
             light.setColorRed();
         } else if (pincher.getCurrentAngle() <= -85) {
             light.setColorPClosed();
