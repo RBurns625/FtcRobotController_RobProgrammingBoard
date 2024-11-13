@@ -151,11 +151,11 @@ public class ViperSlideArm {
         limitArmPosition();
         armMotor.setTargetPosition((int) (armPosition + armPositionFudgeFactor
                 + calculateArmLiftComp()));
-        ((DcMotorEx) armMotor).setVelocity(2100);
+        ((DcMotorEx) armMotor).setVelocity(1000);
         armMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
         slideMotor.setTargetPosition((int) (slidePosition));
-        ((DcMotorEx) slideMotor).setVelocity(2100);
+        ((DcMotorEx) slideMotor).setVelocity(1000);
         slideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
     }
 

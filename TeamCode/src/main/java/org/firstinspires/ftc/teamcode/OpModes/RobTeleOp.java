@@ -37,6 +37,8 @@ public class RobTeleOp extends OpMode {
     MecanumDrive drive;
     double JOYSTICK_EXPO_RATE = 1.5;
     double DRIVE_MULTIPLIER = 0.5;
+    boolean yAlreadyPressed;
+    boolean pincherOpen;
 
 
     @Override
@@ -48,15 +50,11 @@ public class RobTeleOp extends OpMode {
                 new Motor(hardwareMap, "AftRt", Motor.GoBILDA.RPM_312)
         );
         driveOp = new GamepadEx(gamepad1);
-
         claw = new Claw(hardwareMap);
         pincher = new Pincher(hardwareMap);
-
+        gamepadControl = new GamepadSubassembly(hardwareMap);
         viperSlideArm = new ViperSlideArm();
         viperSlideArm.init(hardwareMap);
-
-        gamepadControl = new GamepadSubassembly();
-        gamepadControl.init(gamepad1, gamepad2, claw, pincher, viperSlideArm);
 
         telemetry.addLine("Robot is ready to rock!");
         telemetry.update();
@@ -71,8 +69,54 @@ public class RobTeleOp extends OpMode {
                 -exponentialRate(driveOp.getRightY(), JOYSTICK_EXPO_RATE) * DRIVE_MULTIPLIER
                 );
 
-        gamepadControl.execute();
         viperSlideArm.execute();
+
+        if (gamepad2.a) {
+            gamepadControl.buttonA();
+        }
+        if (gamepad2.b) {
+            gamepadControl.buttonB();
+        }
+        if (gamepad2.x) {
+            gamepadControl.buttonX();
+        }
+        if (gamepad2.y && !yAlreadyPressed) {
+            pincherOpen = !pincherOpen;
+            if (pincherOpen) {
+                pincher.open();
+            } else {
+                pincher.closed();
+            }
+        }
+        if (gamepad2.right_bumper) {
+            gamepadControl.rtbumper();
+        }
+        if (gamepad2.left_bumper) {
+            gamepadControl.ltbumper();
+        }
+        if (gamepad2.dpad_up) {
+            gamepadControl.dpadUp();
+        }
+        if (gamepad2.dpad_left) {
+            gamepadControl.dpadLeft();
+        }
+        if (gamepad2.dpad_down) {
+            gamepadControl.dpadDown();
+        }
+        if (gamepad2.dpad_right) {
+            gamepadControl.dpadRight();
+        }
+
+        yAlreadyPressed = gamepad2.y;
+
+        viperSlideArm.moveSlide(gamepad2.right_trigger + (-gamepad2.left_trigger));
+
+        viperSlideArm.moveArm(-gamepad2.right_stick_y * 1.0);
+        claw.adjustPincher(-gamepad2.right_stick_x * 1.0);
+
+        claw.adjustElbow(-gamepad2.left_stick_y * 1.0);
+        claw.adjustWrist(-gamepad2.left_stick_x * 1.0);
+
 
         viperSlideArm.outputTelemetry(telemetry);
         claw.outputTelemetry(telemetry);
