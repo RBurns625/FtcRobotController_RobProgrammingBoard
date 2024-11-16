@@ -7,7 +7,7 @@ import org.firstinspires.ftc.teamcode.subassembly.Wrist;
 
 @SuppressWarnings("unused")
 
-@TeleOp (name="Wrist Test", group="Test)")
+@TeleOp (name="Wrist Test", group="Test")
 
 public class WristTest extends OpMode {
     private Wrist wrist;

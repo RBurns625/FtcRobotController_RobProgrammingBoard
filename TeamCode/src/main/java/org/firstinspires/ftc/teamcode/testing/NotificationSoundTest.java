@@ -8,7 +8,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import org.firstinspires.ftc.teamcode.subassembly.NotificationSounds;
 
 @SuppressWarnings("unused")
-@TeleOp (name="Notification Sound Test", group="Test)")
+@TeleOp (name="Notification Sound Test", group="Test")
 public class NotificationSoundTest extends OpMode {
     private NotificationSounds sounds;
     GamepadEx mygamepad1 = new GamepadEx(gamepad1);

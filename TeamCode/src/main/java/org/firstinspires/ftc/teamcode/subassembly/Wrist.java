@@ -10,40 +10,29 @@ public class Wrist extends ServoSubassembly{
     private static final double MIN_SAFE_DEGREES =  -90;
     private static final double MAX_SAFE_DEGREES =   90;
     private static final double WRIST_PARKED     =    0;
-    private boolean isStraight;
 
     public Wrist(HardwareMap hwMap) {
         super(MIN_SAFE_DEGREES, MAX_SAFE_DEGREES, hwMap.get(Servo.class, "wrist"));
     }
 
-    public void isStraight() {
-        setServoToAngle(0);
-        isStraight = true;
-    }
     public void zero() {
         setServoToAngle(0);
-        isStraight = true;
     }
     public void straight() {
         setServoToAngle(0);
-        isStraight = true;
     }
     public void right() {
         setServoToAngle(-90);
-        isStraight = false;
     }
     public void left() {
         setServoToAngle(90);
-        isStraight = false;
     }
 
     public void adjustAngle(double degrees) {
-        setServoToAngle(currentAngle+degrees);
-        isStraight = (currentAngle > -1 && currentAngle < 1);
+        setServoToAngle(currentAngle + degrees);
     }
 
     public void outputTelemetry(Telemetry telemetry) {
         telemetry.addData("Wrist Angle", currentAngle);
-        telemetry.addData("Wrist Straight", isStraight);
     }
 }
