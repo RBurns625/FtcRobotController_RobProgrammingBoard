@@ -8,34 +8,26 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 @SuppressWarnings("unused")
 
 public class Pincher extends ServoSubassembly{
-    GoBildaRGBLight light;
     private static final double MIN_SAFE_DEGREES =  -62;
     private static final double MAX_SAFE_DEGREES =   20;
     private static final double PINCHER_OPEN   =    -15;
     private boolean isOpen;
-    private boolean isClosed;
 
     public Pincher(HardwareMap hwMap) {
         super(MIN_SAFE_DEGREES, MAX_SAFE_DEGREES, hwMap.get(Servo.class, "pincher"));
-        light = new GoBildaRGBLight(hwMap);
     }
 
     public void zero()   {
         setServoToAngle(MAX_SAFE_DEGREES);
         isOpen   = true;
-        isClosed = false;
     }
     public void open()   {
         setServoToAngle(PINCHER_OPEN);
         isOpen   = true;
-        isClosed = false;
-        light.setColorRed();
     }
     public void closed() {
         setServoToAngle(MIN_SAFE_DEGREES);
         isOpen   = false;
-        isClosed = true;
-        light.setColorPClosed();
     }
 
     public void toggle() {
@@ -53,6 +45,6 @@ public class Pincher extends ServoSubassembly{
     public void outputTelemetry(Telemetry telemetry) {
         telemetry.addData("Pincher Angle", currentAngle);
         telemetry.addData("Pincher Open", isOpen);
-        telemetry.addData("Pincher Closed", isClosed);
+        telemetry.addData("Pincher Closed", !isOpen);
     }
 }
