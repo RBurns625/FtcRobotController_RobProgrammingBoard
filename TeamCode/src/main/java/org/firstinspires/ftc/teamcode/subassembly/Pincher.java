@@ -8,9 +8,9 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 @SuppressWarnings("unused")
 
 public class Pincher extends ServoSubassembly{
-    private static final double MIN_SAFE_DEGREES =  -62;
+    private static final double MIN_SAFE_DEGREES =  -67;
     private static final double MAX_SAFE_DEGREES =   20;
-    private static final double PINCHER_OPEN   =    -15;
+    private static final double PINCHER_OPEN     =  -15;
     private boolean isOpen;
 
     public Pincher(HardwareMap hwMap) {
