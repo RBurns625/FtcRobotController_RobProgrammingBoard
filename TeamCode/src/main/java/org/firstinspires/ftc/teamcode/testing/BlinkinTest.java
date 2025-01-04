@@ -4,45 +4,34 @@ import com.qualcomm.hardware.rev.RevBlinkinLedDriver;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-import org.firstinspires.ftc.teamcode.subassembly.BlinkinLED;
-
 @SuppressWarnings("unused")
 @TeleOp (name = "Blinkin Test", group= "Test")
 
 public class BlinkinTest extends OpMode {
-
     private RevBlinkinLedDriver blinkin;
 
-    private RevBlinkinLedDriver.BlinkinPattern[]
-            patterns = {
-            BlinkinLED.SOLID_RED,
-            BlinkinLED.SOLID_BLUE,
-            BlinkinLED.SOLID_GREEN,
-            BlinkinLED.SOLID_WHITE,
-            BlinkinLED.SOLID_PURPLE,
-            BlinkinLED.SKY_BLUE,
-            BlinkinLED.AQUA,
-            BlinkinLED.HOT_PINK,
-            BlinkinLED.OCEAN_PALETTE,
-            BlinkinLED.STROBE_RED,
-            BlinkinLED.STROBE_BLUE,
-            BlinkinLED.OFF
-    };
+    private static class ColorAndDisplayName {
+        public final RevBlinkinLedDriver.BlinkinPattern pattern;
+        public final String displayName;
+        public ColorAndDisplayName(RevBlinkinLedDriver.BlinkinPattern pattern, String displayName) {
+            this.pattern = pattern;
+            this.displayName = displayName;
+        }
+    }
 
-    private String[]
-            patternNames = {
-            "Solid Red",
-            "Solid Blue",
-            "Solid Green",
-            "Solid White",
-            "Solid Purple",
-            "Sky Blue",
-            "Aqua",
-            "Hot Pink",
-            "Ocean Palette",
-            "Strobe Red",
-            "Strobe Blue",
-            "Off"
+    private final ColorAndDisplayName[] patternList = new ColorAndDisplayName[] {
+            new ColorAndDisplayName(RevBlinkinLedDriver.BlinkinPattern.RED,                   "Solid Red"),
+            new ColorAndDisplayName(RevBlinkinLedDriver.BlinkinPattern.BLUE,                  "Solid Blue"),
+            new ColorAndDisplayName(RevBlinkinLedDriver.BlinkinPattern.GREEN,                 "Solid Green"),
+            new ColorAndDisplayName(RevBlinkinLedDriver.BlinkinPattern.WHITE,                 "Solid White"),
+            new ColorAndDisplayName(RevBlinkinLedDriver.BlinkinPattern.BLUE_VIOLET,           "Solid Purple"),
+            new ColorAndDisplayName(RevBlinkinLedDriver.BlinkinPattern.SKY_BLUE,              "Sky Blue"),
+            new ColorAndDisplayName(RevBlinkinLedDriver.BlinkinPattern.AQUA,                  "Aqua"),
+            new ColorAndDisplayName(RevBlinkinLedDriver.BlinkinPattern.HOT_PINK,              "Hot Pink"),
+            new ColorAndDisplayName(RevBlinkinLedDriver.BlinkinPattern.RAINBOW_OCEAN_PALETTE, "Ocean Palette"),
+            new ColorAndDisplayName(RevBlinkinLedDriver.BlinkinPattern.STROBE_RED,            "Strobe Red"),
+            new ColorAndDisplayName(RevBlinkinLedDriver.BlinkinPattern.STROBE_BLUE,           "Strobe Blue"),
+            new ColorAndDisplayName(RevBlinkinLedDriver.BlinkinPattern.BLACK,                 "Off")
     };
 
     private int currentIndex = 0;
@@ -50,24 +39,25 @@ public class BlinkinTest extends OpMode {
 
     @Override
     public void init() {
+
         blinkin = hardwareMap.get(RevBlinkinLedDriver.class, "blinkin");
 
-        blinkin.setPattern(BlinkinLED.OFF);
+        blinkin.setPattern(RevBlinkinLedDriver.BlinkinPattern.BLACK);
         telemetry.addData("Status", "Here we go!");
-        telemetry.addData("Current Pattern", patternNames[currentIndex]);
+        telemetry.addData("Current Pattern", patternList[currentIndex].displayName);
         telemetry.update();
     }
 
     @Override
     public void loop() {
         if(gamepad1.a && !previousButtonA) {
-            currentIndex = (currentIndex +1 ) % patterns.length;
-            blinkin.setPattern(patterns[currentIndex]);
+            currentIndex = (currentIndex +1 ) % patternList.length;
+            blinkin.setPattern(patternList[currentIndex].pattern);
         }
 
         previousButtonA = gamepad1.a;
 
-        telemetry.addData("Current Pattern", patternNames[currentIndex]);
+        telemetry.addData("Current Pattern", patternList[currentIndex].displayName);
         telemetry.update();
     }
 
